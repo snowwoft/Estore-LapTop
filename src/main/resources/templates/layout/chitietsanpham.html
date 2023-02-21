@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/main :: dynamic (~{::main})}">
+	<main>
+	<!-- Product Details Begin -->
+	<section class="product-details spad pt-0">
+		<div class="container">
+			<div class="mb-2">
+				<a href="/index" class="btn btn-link pl-0">Trang chủ</a> <i
+					class="fa fa-angle-right" aria-hidden="true"></i> <a href="#"
+					class="btn btn-link">Sản phẩm</a> <i class="fa fa-angle-right"
+					aria-hidden="true"></i> <a href="" class="btn btn-link">[[${sanpham.tenSP}]]</a>
+			</div>
+			<div>
+				<h3 class="d-inline mr-2">
+					<b>[[${sanpham.tenSP}]]</b>
+				</h3>
+				<div class="product__details__rating d-inline mr-3">
+					<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+						class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+						class="fa fa-star-half-o"></i> <span>(999 reviews)</span>
+				</div>
+				<button class="btn-success d-inline border-none"
+					style="border-radius: 13px;">Trả góp 0%</button>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="product__details__pic">
+						
+							<div class="productss border pt-3 pb-3" id="imgOrigin" >
+								<th:block th:each="anh : ${anh}">
+									<img class="product__details__pic__item--large mx-auto d-block"
+										width="446" height="446"
+										th:src="@{|/client/img/product/${anh.hinhAnh}|}" alt="error">
+								</th:block>
+							</div>
+							<div class="product__details__pic__slider owl-carousel">
+								<th:block th:each="listAnh: ${listAnh}" th:if="${listAnh.masp.maSP == sanpham.maSP}">
+									<img th:src="@{|/client/img/product/${listAnh.hinhAnh}|}" alt="error"
+										class="border mt-2" width="121" height="121">
+								</th:block>
+							</div>
+						
+					</div>
+				</div>
+				<div class="col-1"></div>
+				<div class="col-lg-5 col-md-6">
+					<div class="product__details__text">
+						<div class="row">
+							<span class="product__details__price"
+								th:text="${#numbers.formatDecimal(sanpham.donGia - (((sanpham.donGia)/100)*10), 0, 'COMMA', 0, 'POINT')}">
+								</span>VNĐ
+							&nbsp;
+							<span class="product__details__price">
+								<s th:text="${#numbers.formatDecimal(sanpham.donGia, 0, 'COMMA', 0, 'POINT')}"></s>
+							</span>VNĐ
+						</div>
+					
+					
+						<table class="table border"
+							style="margin-top: 10px; margin-bottom: 20px; border-color: #efefef">
+							<tr >
+								<th style="background-color: #efefef; text-align: center; border-top: 1px solid#efefef; border-bottom: 1px solid #efefef">
+									<span class="h6" style="font-weight: normal;">KHUYẾN MÃI</span>	
+								</th>
+							</tr>
+							<tr>
+						
+								<td style="font-size: 16px">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path d="M6 0a6 6 0 1 1 0 12A6 6 0 0 1 6 0Zm-.705 8.737L9.63 4.403 8.392 3.166 5.295 6.263l-1.7-1.702L2.356 5.8l2.938 2.938Z"></path></svg>
+									<i
+									 class=""
+									aria-hidden="true"></i>
+Ưu đãi đặc quyền dành cho Học sinh Sinh viên: Tặng thêm 1 năm bảo hành<br> <i></i>
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path d="M6 0a6 6 0 1 1 0 12A6 6 0 0 1 6 0Zm-.705 8.737L9.63 4.403 8.392 3.166 5.295 6.263l-1.7-1.702L2.356 5.8l2.938 2.938Z"></path></svg>
+									<i
+									 class=""
+									aria-hidden="true"></i>
+Thu cũ đổi mới trợ giá ngay 15% đến 3 triệu (SmartExchange)<br> <i></i>
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path d="M6 0a6 6 0 1 1 0 12A6 6 0 0 1 6 0Zm-.705 8.737L9.63 4.403 8.392 3.166 5.295 6.263l-1.7-1.702L2.356 5.8l2.938 2.938Z"></path></svg>
+									<i
+									 class=""
+									aria-hidden="true"></i>
+
+Tặng PMH 200.000đ mua máy in<br> <i></i>
+							</tr>
+						</table>
+						<div class="border p-3" style="font-size: 16px; border-color: #efefef">
+							<div class="row">
+								<div class="col-1">
+									<i class="fa fa-shield border-success" aria-hidden="true"></i>
+								</div>
+								<div class="col-11">Tình trạng: Mới 100%, Nguyên Seal,
+									Bảo Hành 12 Tháng</div>
+							</div>
+							<div class="row">
+								<div class="col-1">
+									<i class="fa fa-shield border-success" aria-hidden="true"></i>
+								</div>
+								<div class="col-11">Hỗ trợ cài đặt miễn phí</div>
+							</div>
+							<div class="row">
+								<div class="col-1">
+									<i class="fa fa-shield border-success" aria-hidden="true"></i>
+								</div>
+								<div class="col-11">
+Giao hàng miễn phí trong 90 phút</div>
+							</div>
+						</div>
+						
+						<a href="/cart" th:attr="ng-click=@{|cart.add(${sanpham.maSP})|}"
+							class="btn btn-outline-primary w-100 mt-3"
+							style="text-align: center; border-radius: 5px;">
+							MUA NGAY
+						</a>
+
+					</div>
+				</div>
+
+			</div>
+			<hr />
+		</div>
+	</section>
+	<!-- Product Details End -->
+
+
+	<!-- Product description and parameters Begin -->
+	<div class="product_description">
+		<div class="container">
+			<div class="row">
+				<div class="col-8">
+					<a data-index="0" class="box__item item font-weight-bold mt-4 mb-2 w-25"
+						id="left"
+						style="background-color: rgb(228, 233, 237); font-size: 17px;">Mô
+						tả sản phẩm</a><br> 
+					<span style="font-size: 15px; line-height: 28px; text-align: justify"> 					
+							<p class="text-dark">[[${sanpham.moTa}]]</p>
+					</span>
+				</div>
+
+
+				<div class="col-4">
+					<a data-index="0"
+						class="box__item item w-100 font-weight-bold mt-4 mb-2" id="right"
+						style="background-color: rgb(228, 233, 237); font-size: 17px;">Thông
+						số sản phẩm</a><br>
+					<table class="table table-striped">
+						<tbody>
+							<th:block th:each="cauHinh : ${cauHinh}">
+								<tr>
+									<th scope="1">Độ phân giải</th>
+									<td>[[${cauHinh.doPhanGiai}]]</td>
+								</tr>
+								<tr>
+									<th scope="1">Độ rộng</th>
+									<td>[[${cauHinh.doRong}]]</td>
+								</tr>
+								<tr>
+									<th scope="1">Hệ điều hành</th>
+									<td>[[${cauHinh.heDH}]]</td>
+								</tr>
+								<tr>
+									<th scope="1">Chip</th>
+									<td>[[${cauHinh.chip}]]</td>
+								</tr>
+								<tr>
+									<th scope="1">Pin</th>
+									<td>[[${cauHinh.pin}]]</td>
+								</tr>
+								<tr>
+									<th scope="1">RAM</th>
+									<td>[[${cauHinh.ram}]]</td>
+								</tr>
+								<tr>
+									<th scope="1">ROM</th>
+									<td>[[${cauHinh.rom}]]</td>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+					<button class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#myModal22">
+						Xem cấu hình chi tiết
+					</button>
+				</div>
+
+				<!-- xem cấu hình chi tiết -->
+				<div class="modal" id="myModal22">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+							<!-- Modal Header -->
+							<div class="modal-header w-100">
+								<h4 class="modal-title text-center">
+									Thông số chi tiết [[${sanpham.tenSP}]]
+								</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<!-- Modal body -->
+							<div class="modal-body">
+								<table class="table table-striped">
+									<tbody>
+										<th:block th:each="cauHinh : ${cauHinh}">
+											<tr>
+												<th scope="1">Độ phân giải</th>
+												<td>[[${cauHinh.doPhanGiai}]]</td>
+											</tr>
+											<tr>
+												<th scope="1">Độ rộng</th>
+												<td>[[${cauHinh.doRong}]]</td>
+											</tr>
+											<tr>
+												<th scope="1">Hệ điều hành</th>
+												<td>[[${cauHinh.heDH}]]</td>
+											</tr>
+											<tr>
+												<th scope="1">Chip</th>
+												<td>[[${cauHinh.chip}]]</td>
+											</tr>
+											<tr>
+												<th scope="1">Pin</th>
+												<td>[[${cauHinh.pin}]]</td>
+											</tr>
+											<tr>
+												<th scope="1">RAM</th>
+												<td>[[${cauHinh.ram}]]</td>
+											</tr>
+											<tr>
+												<th scope="1">ROM</th>
+												<td>[[${cauHinh.rom}]]</td>
+											</tr>
+										</th:block>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<!-- Product description and parameters End -->
+
+	<!-- comment client start-->
+	<div class="container">
+		<div class="mb-3">
+			<h4 class="font-weight-bold d-inline">Đánh Giá Sản Phẩm [[${sanpham.tenSP}]]</h4>
+			<span class="d-inline ml-3">
+				<i class="fa fa-star text-warning" aria-hidden="true"></i>
+				<i class="fa fa-star text-warning" aria-hidden="true"></i>
+				<i class="fa fa-star text-warning" aria-hidden="true"></i>
+				<i class="fa fa-star text-warning" aria-hidden="true"></i>
+				<i class="fa fa-star text-warning" aria-hidden="true"></i>
+			</span>
+		</div>
+		<hr />
+		<!-- form -->
+		
+		<th:block th:if="${#request.remoteUser}">
+			<div class="mt-5">
+				<h4 class="text-danger text-center">[[${message}]]</h4>
+			</div>
+			<div class="d-flex justify-content-center mt-3 mb-1">
+				<form action="/binhluan" method="post" class="w-75" id="panelToggle" th:object="${khachhang}">
+					<input th:value="${khachhang.taiKhoan}" name="taiKhoan" hidden="true"/>
+					<input th:value="${sanpham.maSP}" name="maSP" hidden="true">
+					<div class="row">
+						<div class="col-1">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</div>
+						<div class="col-9">
+							<input th:field="*{hoTen}" type="text" class="form-control" placeholder="Tên hiện thị" readonly="readonly">
+						</div>
+						<div class="col-2">
+							<button  type="submit"  class="btn btn-primary p-2">Bình luận</button>
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<input type="date" class="form-control"
+							placeholder="Enter password" id="date" hidden="true">
+					</div>
+					<div class="form-group">
+						<textarea rows="5" cols="5" class="form-control"
+							placeholder="Nội dung bình luận ..." name="noiDung"></textarea>
+					</div>
+				</form>
+			</div>
+		</th:block>
+		
+		<th:block th:unless="${#request.remoteUser}">
+			<div class="d-flex justify-content-center mt-5 mb-1">
+				<form action="#" class="w-75" id="panelToggle" >
+					<div class="row">
+						<div class="col-1">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</div>
+						<div class="col-9">
+							<input type="text" class="form-control" placeholder="Tên hiện thị"
+								readonly="readonly">
+						</div>
+						<div class="col-2">
+							<a href="/security/form/login" type="button" class="btn btn-primary p-2">Đăng nhập</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="date" class="form-control"
+							placeholder="Enter password" id="date" hidden="true">
+					</div>
+					<div class="form-group">
+						<textarea rows="5" cols="5" class="form-control"
+							placeholder="Nội dung bình luận ..."></textarea>
+					</div>
+				</form>
+			</div>
+		</th:block>
+
+
+		<div class="d-flex align-items-center flex-column mt-2 mb-5">
+			<div class="w-75 row border pt-2 pb-2" th:each="comment: ${comments}">
+				<div class="leftPaneImg col-1">
+						<i class="fa fa-user-circle" aria-hidden="true"></i>
+				</div>
+				<div class="col-11">
+					<div class="row p-2">
+						<span>
+							<span class="font-weight-bold">[[${comment.taikhoan.hoTen}]]</span>
+							<span class="ml-4 mr-4">|</span>
+							<span>[[${comment.ngayBL}]]</span>
+						</span>
+					</div>
+					<div class="row p-2 text-justify pr-4">
+						<span>[[${comment.noiDung}]]</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- comment
+		<div class="d-flex justify-content-center mb-5">
+			<div class="commentBox w-75">
+				<div class="comment-list"></div>
+			</div>
+		</div>
+		 -->
+		
+	</div>
+	<!-- comment client end -->
+
+
+	<!-- Title Desgn Start -->
+	<div class="container mb-4 mt-5">
+		<div class="d-flex">
+			<span class="title-phone">Sản phẩm cùng loại</span>
+		</div>
+	</div>
+	<!-- Title Desgn End -->
+ 
+ 	<!-- sản phẩm cùng loại start -->
+		<div class="container p-0" style="background-color: #efefef">
+			<div class="slider-parent2a pb-2 pt-3 rounded">
+			<div class="slider-child" >
+				<div class="slider-accessory">
+					<div class="row no-gutters">
+						<div class="categories__slider owl-carousel">	
+							<div class="card-groups col-lg-3 p-0" th:each="listSpHang: ${sanpham.mahang.sanpham}">
+								<div class="border card-cascade card-ecommerce wider">
+							<!--Card image-->
+							<th:block th:each="listAnh: ${listImg}" th:if="${listSpHang.maSP == listAnh.masp.maSP}">
+								<a th:href="@{|/product/detail/${listSpHang.maSP}|}">
+									<div class="view product-frame view-cascade overlay text-center">
+										<img class="mt-4 img-org" width="210" height="240"
+									th:src="@{|/client/img/product/${listAnh.hinhAnh}|}" alt="error" />
+									</div>
+								</a>
+							</th:block>
+							<!--Card Body-->
+							<div class="card-body">
+								<h5 class="title-product text-truncate" th:text="${listSpHang.tenSP}"></h5>
+								<div class="price">
+									<span class="price-new"
+										th:text="${#numbers.formatDecimal(listSpHang.donGia - ((listSpHang.donGia)/100)*10, 0, 'COMMA', 0, 'POINT')}"></span></span></span><span style="color: red">đ</span>
+									<span class="price-old"
+										th:text="${#numbers.formatDecimal(listSpHang.donGia, 0, 'COMMA', 0, 'POINT')}"></span>đ
+								</div>
+							</div>
+						</div>
+							</div>
+						</di>
+					</div>
+				</div>
+			</div>
+			</div>	
+		
+		</div>
+	</div>
+		<!-- sản phẩm cùng loại end -->
+	
+
+</main>
+
+</html>

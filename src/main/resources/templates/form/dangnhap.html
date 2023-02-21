@@ -1,0 +1,62 @@
+<meta charset="UTF-8">
+<div xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/main :: dynamic (~{::main})}">
+	<main>
+		<!-- start banner Area -->
+		<section class="banner-area relative style" id="home"
+			data-parallax="scroll"
+			data-image-src="http://www.blogmais.org/ourimg/big/0/1532_wallpaper-website.jpg">
+
+			<div class="container">
+				<div class="row">
+					<div class="col-7" style="margin-left: 250px">
+						<div class="teklif pt-100 pb-100 border">
+							<h2 class="text-center	">Đăng Nhập</h2>							
+						<!-- form login start -->
+							
+							<div class="text-danger text-center mt-3 h4">
+								[[${message}]]
+							</div>
+							
+							<form th:action="@{/form/login}" method="post" class="form-group">
+								<div class="form-group mt-2">
+									<label>Tài khoản</label> 
+									<input name="username" type="text" class="form-control" placeholder="Nhập tài khoản">
+								</div>
+								<div class="form-group mt-2">
+									<label>Mật khẩu</label> 
+									<input name="password" type="password" class="form-control" placeholder="Nhập mật khẩu">
+								</div>
+							
+								<div class="row">
+									<div class="col-8 pr-0">
+										<input name="rememberMe" type="checkbox" >
+										<label>Remember me?</label>
+									</div>									
+								
+								
+								<!-- 	<div class="col-2 p-0">
+										<a th:href="@{/index/quenmk}" class="text-end" style="padding-left: 30px">Quên mật khẩu</a>
+									</div>	 -->
+									
+									<div class="col-2 p-0">
+									<a>Chưa Có Tài Khoản?</a>
+										<a th:href="@{/index/dangky}" class="text-end"  >Đăng ký</a>
+										
+									</div>								
+								</div>
+								<div class="text-center mt-5">
+									<button type="submit" class="btn btn-primary "
+										style="height: 40px; font-size: 15px; width: 200px;">Đăng nhập</button>
+								</div>
+							</form>
+							
+						</div>
+						<!-- form login end -->
+						</div>
+					</div>
+				</div>
+		</section>
+		<!-- End banner Area -->
+	</main>
+</div>

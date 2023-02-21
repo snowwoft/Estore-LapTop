@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+
+
+<title>Nhân Viên</title>
+
+<!--     Fonts and icons     -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+<!-- Nucleo Icons -->
+<link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
+<link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/85b9f1f1eb.js" crossorigin="anonymous"></script>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<!-- CSS Files -->
+<link id="pagestyle" href="/assets/css/material-dashboard.css?v=3.0.2" rel="stylesheet" />
+</head>
+
+<body class="g-sidenav-show  bg-gray-200">
+
+	<aside th:replace="/admin/header"></aside>
+	
+	<main
+		class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+		<!-- Navbar -->
+		<nav
+			class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
+			id="navbarBlur" navbar-scroll="true">
+			<div class="container-fluid py-1 px-3">
+				<nav aria-label="breadcrumb">
+					<ol
+						class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+						<li class="breadcrumb-item text-sm"><a
+							class="opacity-5 text-dark" href="javascript:;">Admin</a></li>
+						<li class="breadcrumb-item text-sm text-dark active"
+							aria-current="page">Nhân Viên</li>
+					</ol>
+					<h6 class="font-weight-bolder mb-0">Nhân Viên</h6>
+				</nav>
+				<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+					id="navbar">
+					<div class="ms-md-auto pe-md-3 d-flex align-items-center mt-3">
+						<form action="/admin/nhanvien/search" >
+							<div class="input-group input-group-outline">	
+								<label class="form-label">Tìm kiếm theo tên  </label> 
+								<input name="keyword"  type="text" class="form-control" style="height: 40px; "/>
+									<button class="btn bg-gradient-info  ms-2"> Tìm kiếm</button>
+							</div>
+						</form>
+					</div>
+					<ul class="navbar-nav  justify-content-end">
+						<li class="nav-item d-flex align-items-center">
+							<a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+								<i class="fa fa-user me-sm-1"></i>
+								<span class="d-sm-inline d-none " >[[${#request.remoteUser}]]</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- End Navbar -->
+
+		<div class="container-fluid py-4">
+			<div class="row">
+				<div class="col-12">
+					<div class="card my-4">
+						<div
+							class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+							<div
+								class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
+								<h6 class="text-white text-capitalize ps-3">Danh Sách Nhân Viên</h6>
+							</div>
+						</div>
+						<div class="card-body px-0 pb-2">
+							<div class="table-responsive p-0" style="height: 400px; overflow: scroll;">
+								<table class="table align-items-center mb-0">
+									<thead>
+										<tr>
+											<th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Tên
+												Nhân Viên</th>
+											<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mật khẩu</th>
+											<th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Email</th>
+											<th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày
+												Sinh</th>
+											<th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+												SDT</th>
+											<th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+												Địa Chỉ</th>
+											<th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+												Chức Vụ</th>
+											<th class="text-secondary opacity-7"></th>
+										</tr>
+									</thead>
+									<tbody>	
+										<tr th:each="page : ${pages}">
+										<th:block th:unless="${session.taiKhoanNV == page.taiKhoan}">
+											<td >
+												<div class="d-flex px-2 py-1 ms-2">
+													<div class="d-flex flex-column justify-content-center">
+														<h6 class="mb-0 text-sm">[[${page.hoTen}]]</h6>
+														<p class="text-xm text-secondary mb-0">[[${page.taiKhoan}]]</p>
+													</div>
+												</div>
+											</td>
+											<td>
+												<p class="text-xm font-weight-bold mb-0">[[${page.matKhau}]]</p>
+											</td>
+											<td class="align-middle text-center text-sm">
+												<span class="text-secondary text-xm font-weight-bold">[[${page.email}]]</span>
+											</td>
+											<td class="align-middle text-center"><span
+												class="text-secondary text-xm font-weight-bold" 
+												th:text="${page.ngaySinh}"></span>
+											</td>
+											<td class="align-middle text-center"><span
+												class="text-secondary text-xm font-weight-bold">[[${page.sdt}]]</span>
+											</td>
+											<td class="align-middle text-center"><span
+												class="text-secondary text-xm font-weight-bold">[[${page.diaChi}]]</span>
+											</td>
+											<td class="align-middle text-center"><span
+												class="text-secondary text-xm font-weight-bold" th:text="${page.vaiTroNV.tenVaiTro}"></span>
+											</td>
+											<td class="align-middle">
+											<a th:href="|/admin/nhanvien/edit/${page.taiKhoan}|" class="text-secondary font-weight-bold text-xs"
+												data-toggle="tooltip" data-original-title="Edit user">Edit </a>
+											<a th:href="|/admin/nhanvien/delete/${page.taiKhoan}|" class="text-secondary font-weight-bold text-xs ms-2"
+												data-toggle="tooltip" data-original-title="Edit user">Del </a>
+											</td>
+										</th:block>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="text-center mt-3" th:unless="${deletePage == 1}">
+								<a th:href="@{|/admin/nhanvien?p=0|}" class="mx-2" style="text-transform: uppercase; font-weight: bold;"><i class="fa-solid fa-backward-step"></i></a>
+								<a th:href="@{|/admin/nhanvien?p=${pages.getNumber() > 0 ? pages.getNumber() - 1 : 0}|}" class=" mx-2" style="text-transform: uppercase; font-weight: bold;"><i class="fa fa-solid fa-backward"></i> </a>
+								<a th:href="@{|/admin/nhanvien?p=${pages.getNumber() < pages.getTotalPages() -1 ? pages.getNumber() + 1 : pages.getTotalPages() -1}|}"
+									class="mx-2" style="text-transform: uppercase; font-weight: bold;"><i class="fa fa-solid fa-forward"></i> </a>
+								<a th:href="@{|/admin/nhanvien?p=${pages.getTotalPages() - 1}|}" class="ms-1" style="text-transform: uppercase; font-weight: bold;"><i class="fa-sharp fa-solid fa-forward-step"></i> </a>
+							</div>							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row"  th:if="${nhanVien != null}">
+				<div class="col-12">
+					<div class="card my-4">
+						<div
+							class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+							<div
+								class="bg-gradient-info shadow-info border-radius-lg pt-4 pb-3">
+								<h6 class="text-white text-capitalize ps-3">Thông Tin Chi Tiết</h6>
+							</div>
+						</div>
+						<div class="card-body px-0 pb-2" >
+							<h6 class="text-center text-danger mb-3" th:text="${message}"></h6>							
+							<form action="/admin/nhanvien" th:object="${nhanVien}" method="post" class="text-start" style="padding: 0 200px;">
+								<div class="row mb-3">
+									<div class="col-6">
+										<div class="input-group input-group-outline  ">
+											<label class="form-label">Tài khoản</label> 
+											<input th:field="*{taiKhoan}" type="text" class="form-control"/>
+										</div>
+										<p th:if="${#fields.hasErrors('taiKhoan')}" th:errors="*{taiKhoan}" class="text-danger mb-0"></p>																				
+									</div>
+									<div class="col-6">
+										<div class="input-group input-group-outline  ">
+											<label class="form-label">Mật khẩu</label> 
+											<input th:field="*{matKhau}" type="text" class="form-control"/>
+										</div>
+										<p th:if="${#fields.hasErrors('matKhau')}" th:errors="*{matKhau}" class="text-danger mb-0"></p>																
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-6">
+										<div class="input-group input-group-outline ">
+											<label class="form-label">Tên Nhân Viên</label>
+											 <input th:field="*{hoTen}" type="text" class="form-control"/>
+										</div>
+										<p th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}" class="text-danger mb-0"></p>										
+										
+									</div>
+									<div class="col-6">
+										<div class="input-group input-group-outline ">
+											<label style="margin-right: 10px; margin-top: 10px;">Ngày Sinh</label> 
+											<input th:field="*{ngaySinh}" type="date" class="form-control"/>
+										</div>
+										<p th:if="${#fields.hasErrors('ngaySinh')}" th:errors="*{ngaySinh}" class="text-danger mb-0"></p>										
+										
+									</div>
+								</div>
+								<div class="input-group input-group-outline mb-3">
+									<label class="mt-2">Chức Vụ</label> 
+									<br>
+									<select th:field="*{vaiTroNV.id}" class="form-control ms-2">
+										<th:block th:each="vaitro : ${listVaiTro}">
+											<option th:value="${vaitro.id}" th:selected="${vaitro.id == nhanVien.vaiTroNV.id}">[[${vaitro.tenVaiTro}]]</option>
+										</th:block>			
+									</select>
+								</div>
+								<div class="row mb-3">
+									<div class="col-6">
+										<div class="input-group input-group-outline ">
+											<label class="form-label">SĐT</label> 
+											<input th:field="*{sdt}" type="text" class="form-control"/>
+										</div>
+										<p th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}" class="text-danger mb-0"></p>										
+																				
+									</div>
+									<div class="col-6">
+										<div class="input-group input-group-outline ">
+											<label class="form-label">Email</label> 
+											<input th:field="*{email}" type="email" class="form-control"/>
+										</div>
+										<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger mb-0"></p>										
+										
+									</div>
+								</div>
+								<div class="input-group input-group-outline ">
+									<label class="form-label">Địa Chỉ</label> 
+									<input th:field="*{diaChi}" type="text" class="form-control"/>
+								</div>
+								<p th:if="${#fields.hasErrors('diaChi')}" th:errors="*{diaChi}" class="text-danger mb-0"></p>										
+								
+								<div class="text-center">
+									<button formaction="/admin/nhanvien/create"  class="btn bg-gradient-primary my-4 mb-2">Thêm</button>
+									<button formaction="/admin/nhanvien/update" class="btn bg-gradient-secondary my-4 mb-2">Sửa</button>
+									<button th:formaction="|/admin/nhanvien/delete/${nhanVien.taiKhoan}|" class="btn bg-gradient-info my-4 mb-2">Xóa</button>
+									<button formaction="/admin/nhanvien/new" class="btn bg-gradient-danger my-4 mb-2">Mới</button>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<div class="fixed-plugin">
+		<div th:replace="/admin/setting_web"></div>
+	</div>
+	<!--   Core JS Files   -->
+	<script src="/assets/js/core/popper.min.js"></script>
+	<script src="/assets/js/core/bootstrap.min.js"></script>
+	<script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+	<script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+	<script src="/assets/js/plugins/chartjs.min.js"></script>
+	<script  src="/assets/js/setting_web.js"></script>
+	<script>
+		var win = navigator.platform.indexOf('Win') > -1;
+		if (win && document.querySelector('#sidenav-scrollbar')) {
+			var options = {
+				damping : '0.5'
+			}
+			Scrollbar.init(document.querySelector('#sidenav-scrollbar'),
+					options);
+		}
+	</script>
+	<!-- Github buttons -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="/assets/js/material-dashboard.js?v=3.0.2"></script>
+</body>
+
+</html>
